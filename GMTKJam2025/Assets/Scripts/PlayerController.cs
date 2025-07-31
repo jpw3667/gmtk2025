@@ -37,7 +37,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
         {
             rb.linearVelocityX *= 0.94f;
         }
-        Debug.Log(horizontal);
+       // Debug.Log(horizontal);
         rb.linearVelocity = new Vector2(rb.linearVelocity.x + (horizontal * acceleration * Time.deltaTime), rb.linearVelocity.y);
         if(rb.linearVelocity.x > maxSpeed)
         {
