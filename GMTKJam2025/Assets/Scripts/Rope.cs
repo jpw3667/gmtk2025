@@ -21,7 +21,7 @@ public class Rope : MonoBehaviour
         for (int i = 0; i < numLinks; i++)
         {
             GameObject newSeg = Instantiate(prefabRopeSegment);
-            newSeg.transform.SetParent(transform);
+            newSeg.transform.parent = transform;
             newSeg.transform.position = transform.position;
             HingeJoint2D joint = newSeg.GetComponent<HingeJoint2D>();
             joint.connectedBody = prevBody;
@@ -45,21 +45,21 @@ public class Rope : MonoBehaviour
             HingeJoint2D joint = newSeg.GetComponent<HingeJoint2D>();
             joint.connectedBody = hook;
 
-           // if(top == null)
-           // {
-             //   top = joint;
-              //  top.GetComponent<RopeSegment>().ResetAnchor();
-             //   top.connectedBody = hook;
-           // }
+            if(top == null)
+            {
+                top = joint;
+                top.GetComponent<RopeSegment>().ResetAnchor();
+                top.connectedBody = hook;
+            }
 
 
-          //  else
-           // {
+            else
+            {
                 newSeg.GetComponent<RopeSegment>().connectedBelow = top.gameObject;
                 top.connectedBody = newSeg.GetComponent<Rigidbody2D>();
                 top.GetComponent<RopeSegment>().ResetAnchor();
                 top = joint;
-           // }
+            }
 
 
            
@@ -69,16 +69,22 @@ public class Rope : MonoBehaviour
 
     public void removeLink()
     {
-        if (numLinks > 0)
+        if (numLinks > -1)
         {
             numLinks--;
-
-            HingeJoint2D newTop = top.gameObject.GetComponent<RopeSegment>().connectedBelow.GetComponent<HingeJoint2D>();
-            newTop.connectedBody = hook;
-            newTop.gameObject.transform.position = hook.transform.position;
-            newTop.GetComponent<RopeSegment>().ResetAnchor();
-            Destroy(top.gameObject);
-            top = newTop;
+            if (top.gameObject.GetComponent<RopeSegment>().connectedBelow != null)
+            {
+                HingeJoint2D newTop = top.gameObject.GetComponent<RopeSegment>().connectedBelow.GetComponent<HingeJoint2D>();
+                newTop.connectedBody = hook;
+                newTop.gameObject.transform.position = hook.transform.position;
+                newTop.GetComponent<RopeSegment>().ResetAnchor();
+                Destroy(top.gameObject);
+                top = newTop;
+            }
+            else
+            {
+                Destroy(top.gameObject);
+            }
         }
     }
 }

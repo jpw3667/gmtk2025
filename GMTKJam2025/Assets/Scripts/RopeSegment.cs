@@ -12,8 +12,7 @@ public class RopeSegment : MonoBehaviour
     }
     public void ResetAnchor()
     {
-        if (connectedAbove != null)
-        {
+
             connectedAbove = GetComponent<HingeJoint2D>().connectedBody.gameObject;
             RopeSegment aboveSegment = connectedAbove.GetComponent<RopeSegment>();
 
@@ -27,6 +26,5 @@ public class RopeSegment : MonoBehaviour
             {
                 GetComponent<HingeJoint2D>().connectedAnchor = new Vector2(0, 0);
             }
-        }
     }
 }
