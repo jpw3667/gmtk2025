@@ -7,6 +7,7 @@ public class Rope : MonoBehaviour
     public GameObject prefabRopeSegment;
     public int numLinks;
     public HingeJoint2D top;
+    public Rigidbody2D bottom;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -50,6 +51,7 @@ public class Rope : MonoBehaviour
                 top = joint;
                 top.GetComponent<RopeSegment>().ResetAnchor();
                 top.connectedBody = hook;
+                bottom = newSeg.GetComponent<Rigidbody2D>();
             }
 
 

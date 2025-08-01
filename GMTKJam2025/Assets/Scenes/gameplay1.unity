@@ -1792,6 +1792,7 @@ MonoBehaviour:
   prefabRopeSegment: {fileID: 2280646513439464086, guid: a27e9a482cb63704299940a39ad437a3, type: 3}
   numLinks: 3
   top: {fileID: 0}
+  bottom: {fileID: 0}
 --- !u!4 &693863272
 Transform:
   m_ObjectHideFlags: 0
@@ -2541,7 +2542,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0.5, z: 0}
-  m_LocalScale: {x: 1.6666666, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1646119305}
@@ -2740,7 +2741,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &887793757
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4380,7 +4381,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1583212353
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4961,7 +4962,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 519420031}
   mouseTest: {fileID: 406540348}
-  ropes: []
+  playerHook: {fileID: 817837553}
 --- !u!114 &1646119308
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4976,8 +4977,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hook: {fileID: 817837555}
   prefabRopeSegment: {fileID: 2280646513439464086, guid: a27e9a482cb63704299940a39ad437a3, type: 3}
-  numLinks: 3
+  numLinks: 0
   top: {fileID: 0}
+  bottom: {fileID: 0}
 --- !u!1 &1678940314
 GameObject:
   m_ObjectHideFlags: 0
