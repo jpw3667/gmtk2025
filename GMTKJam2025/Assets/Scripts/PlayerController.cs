@@ -1,3 +1,5 @@
+using System.Runtime.CompilerServices;
+using UnityEditorInternal.VersionControl;
 using UnityEngine;
 
 public class NewMonoBehaviourScript : MonoBehaviour
@@ -5,6 +7,9 @@ public class NewMonoBehaviourScript : MonoBehaviour
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private GameObject myHook;
+
+    [SerializeField] private Rope currentRope;
 
     private float horizontal;
     private float acceleration = 20f;
@@ -16,18 +21,27 @@ public class NewMonoBehaviourScript : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        myHook.transform.position = new Vector2(transform.position.x, transform.position.y + 0.6f);
         horizontal = Input.GetAxisRaw("Horizontal");
 
         if(Input.GetButtonDown("Jump") && IsGrounded())
         {
             rb.linearVelocityY = jumpStrength; ;
+        }
+
+        if (Input.mouseScrollDelta.y > 0)
+        {
+            currentRope.addLink();
+        }
+        else if (Input.mouseScrollDelta.y < 0)
+        {
+            currentRope.removeLink();
         }
     }
 

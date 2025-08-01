@@ -1,13 +1,18 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.U2D.Animation;
 
 public class RopeController : MonoBehaviour
 {
     [SerializeField] private Camera mainCamera;
-    [SerializeField] Rigidbody2D endRB;
-    [SerializeField] Rigidbody2D startRB;
+
     [SerializeField] Rigidbody2D mouseTest;
+
+    [SerializeField] SpriteSkin[] ropes;
+
+    private Rigidbody2D endRB;
+    private Rigidbody2D startRB;
 
     private Rigidbody2D grabbed;
     private float maxDistance;
@@ -15,20 +20,26 @@ public class RopeController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        maxDistance = Vector2.Distance(startRB.position, endRB.position);
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        /*
         Vector3 mouseWorldPosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
         float mouseDistance = Vector2.Distance(startRB.position, mouseWorldPosition);
         mouseWorldPosition.z = 0f;
 
-        if (Input.GetMouseButtonDown(0) && Vector2.Distance(mouseWorldPosition, endRB.position) < 0.5f)
+        if (Input.GetMouseButtonDown(0))
         {
-            grabbed = endRB;
+            for (int i = 0; i < ropes.Length; i++)
+            {
+                if (Vector2.Distance(mouseWorldPosition, ropes[i].rootBone.position) < 0.5f) {
+                    grabbed = endRB;
+                }
+            }
+            
         }
         else if (Input.GetMouseButtonUp(0)){
             grabbed = null;
@@ -64,6 +75,7 @@ public class RopeController : MonoBehaviour
         }
 
         //Debug.Log(Vector2.Distance(mouseWorldPosition, endRB.position));
+        */
 
     }
 }
