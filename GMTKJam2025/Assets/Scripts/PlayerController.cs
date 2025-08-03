@@ -2,7 +2,7 @@ using System.Runtime.CompilerServices;
 using UnityEditorInternal.VersionControl;
 using UnityEngine;
 
-public class NewMonoBehaviourScript : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Transform groundCheck;
@@ -10,6 +10,8 @@ public class NewMonoBehaviourScript : MonoBehaviour
     [SerializeField] private GameObject myHook;
 
     [SerializeField] private Rope currentRope;
+
+    public GameObject attachedLoop = null;
 
     private float horizontal;
     private float acceleration = 20f;
@@ -42,6 +44,11 @@ public class NewMonoBehaviourScript : MonoBehaviour
         else if (Input.mouseScrollDelta.y < 0)
         {
             currentRope.removeLink();
+        }
+
+        if (Input.GetMouseButtonUp(0) && attachedLoop != null)
+        {
+            currentRope.attach(attachedLoop);
         }
     }
 

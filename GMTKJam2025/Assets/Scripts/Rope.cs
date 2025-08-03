@@ -69,6 +69,23 @@ public class Rope : MonoBehaviour
 
     }
 
+
+    public void attach(GameObject loop)
+    {
+        GameObject tempSeg = bottom.GetComponent<RopeSegment>().connectedBelow;
+
+        Debug.Log("connected!!");
+        bottom.transform.position = loop.transform.position;
+        //loop.transform.parent = hook.transform;
+        loop.GetComponent<HingeJoint2D>().connectedBody = bottom.GetComponent<Rigidbody2D>();
+        loop.GetComponent<HingeJoint2D>().connectedAnchor = new Vector2(0, bottom.GetComponent<SpriteRenderer>().bounds.size.y * -0.666f);
+       // bottom.GetComponent<RopeSegment>().connectedAbove = loop.gameObject;
+       // loop.GetComponent<RopeSegment>().connectedAbove = bottom.gameObject;
+         //loop.GetComponent<RopeSegment>().ResetAnchor();
+
+
+    }
+
     public void removeLink()
     {
         if (numLinks > -1)
@@ -89,4 +106,5 @@ public class Rope : MonoBehaviour
             }
         }
     }
+
 }

@@ -7,11 +7,10 @@ public class RopeController : MonoBehaviour
 {
     [SerializeField] private Camera mainCamera;
 
-    [SerializeField] Rigidbody2D mouseTest;
-
-
     private Rigidbody2D endRB;
     [SerializeField] private GameObject playerHook;
+
+
 
     private Rigidbody2D grabbed;
     private float maxDistance;
@@ -27,7 +26,7 @@ public class RopeController : MonoBehaviour
     {
         if (this.GetComponent<Rope>().numLinks > 0)
         {
-            Debug.Log(this.GetComponent<Rope>().numLinks);
+           // Debug.Log(this.GetComponent<Rope>().numLinks);
             endRB = this.GetComponent<Rope>().bottom.GetComponent<Rigidbody2D>().GetComponent<Rigidbody2D>();
 
 
@@ -65,14 +64,13 @@ public class RopeController : MonoBehaviour
 
                     float grabx = (maxDistance * Mathf.Cos(angle));
                     float graby = (maxDistance * Mathf.Sin(angle));
-                    Debug.Log(mouseWorldPosition);
+                    //Debug.Log(mouseWorldPosition);
                     //grabbed.position = rotation;
                     //grabbed.transform.Translate(rotation);
                     // float a2 = (float)Math.Sqrt((mouseDistance * mouseDistance)/2f);
                     // grabbed.position = new Vector2(a2,a2);
                     //Debug.Log(a2);
                     grabbed.position = new Vector2(playerHook.transform.position.x + grabx, playerHook.transform.position.y + graby);
-                    mouseTest.position = new Vector2(playerHook.transform.position.x + grabx, playerHook.transform.position.y + graby);
                 }
                 else
                 {
@@ -81,6 +79,7 @@ public class RopeController : MonoBehaviour
 
             }
         }
+
 
         //Debug.Log(Vector2.Distance(mouseWorldPosition, endRB.position));
         
